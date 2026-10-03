@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>XPLT Optimizer</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:#050505;color:#fff;display:flex;justify-content:center;align-items:center}
+.container{width:92%;max-width:430px;padding:25px;border:1px solid #222;border-radius:24px;background:#0d0d0d;box-shadow:0 0 30px rgba(0,255,255,.12)}
+.logo{text-align:center;font-size:42px;font-weight:900;color:#00ffff;letter-spacing:5px}
+.subtitle{text-align:center;color:#888;margin-top:5px}
+.status{margin:25px 0;padding:18px;border-radius:15px;background:#151515;text-align:center}
+.progress{height:8px;background:#222;border-radius:10px;overflow:hidden;margin-top:15px}
+.bar{width:0%;height:100%;background:#00ffff;transition:.4s}
+button{width:100%;padding:16px;margin:7px 0;border:0;border-radius:14px;background:#00ffff;color:#000;font-weight:bold;font-size:15px;cursor:pointer}
+button:active{transform:scale(.97)}
+.log{margin-top:15px;height:120px;overflow:auto;padding:12px;border-radius:12px;background:#080808;color:#aaa;font-size:12px}
+.dev{margin-top:22px;text-align:center;color:#777;font-size:12px}
+.dev strong{color:#fff}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo">XPLT</div>
+<div class="subtitle">OPTIMIZER</div>
+<div class="status">
+<b id="status">READY</b>
+<div class="progress"><div class="bar" id="bar"></div></div>
+</div>
+<button onclick="optimize()">⚡ OPTIMIZE NOW</button>
+<button onclick="clearCache()">🧹 CLEAR CACHE</button>
+<button onclick="clearRAM()">🧠 CLEAR RAM</button>
+<button onclick="boost()">🚀 PERFORMANCE BOOST</button>
+<div class="log" id="log">XPLT Optimizer ready...</div>
+<div class="dev">DEVELOPER<br><strong>NETZ • APIT • KAI</strong></div>
+</div>
+<script>
+const logBox=document.getElementById("log"),statusBox=document.getElementById("status"),bar=document.getElementById("bar");
+function log(t){logBox.innerHTML+="<br>• "+t;logBox.scrollTop=logBox.scrollHeight}
+function progress(v){bar.style.width=v+"%"}
+function run(title,steps){
+ statusBox.innerText=title;progress(0);let i=0;
+ const timer=setInterval(()=>{
+  if(i>=steps.length){clearInterval(timer);progress(100);statusBox.innerText="COMPLETED";log("Optimization selesai.");return}
+  progress(Math.round(((i+1)/steps.length)*100));log(steps[i]);i++;
+ },500);
+}
+function optimize(){run("OPTIMIZING...",["Checking device...","Cleaning temporary data...","Requesting Android cache cleanup...","Managing background processes...","Running maintenance...","Finalizing optimization..."])}
+function clearCache(){run("CLEARING CACHE...",["Scanning temporary data...","Requesting cache cleanup...","Cleaning temporary files...","Cache operation completed."])}
+function clearRAM(){run("MANAGING RAM...",["Checking background apps...","Requesting Android memory cleanup...","Releasing cached processes...","RAM optimization completed."])}
+function boost(){run("BOOSTING...",["Preparing performance mode...","Reducing unnecessary background work...","Running system maintenance...","Applying safe optimization...","Performance boost completed."])}
+</script>
+</body>
+</html>
